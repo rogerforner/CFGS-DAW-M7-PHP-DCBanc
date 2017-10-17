@@ -68,7 +68,15 @@ function calcular($entidad, $oficina, $cuenta) {
   //# -------------------------------------------------------------------
   //Sumamos el sumatorio de la entidad y de la oficina.
   //Módulo (%) del total entre 11 para quedamos el resto.
-  $dc1er = ($entidadSumatorio + $oficinaSumatorio) % 11;
+  $resto1er = ($entidadSumatorio + $oficinaSumatorio) % 11;
+
+  //A 11 le quitamos el resto y obtendremos el 1er dígito de control.
+  $dc1er = 11 - $resto1er;
+
+  //Si el dígito de control es igual a 10, éste tomará el valor 1.
+  if ($dc1er == 10) {
+    $dc1er = 1;
+  }
 
   //### Cuenta
   //# -------------------------------------------------------------------
@@ -105,7 +113,15 @@ function calcular($entidad, $oficina, $cuenta) {
   //# -------------------------------------------------------------------
   //Sumamos el sumatorio de la entidad y de la oficina.
   //Módulo (%) del total entre 11 para quedamos el resto.
-  $dc2do = $cuentaSumatorio % 11;
+  $resto2do = $cuentaSumatorio % 11;
+
+  //A 11 le quitamos el resto y obtendremos el 1er dígito de control.
+  $dc2do = 11 - $resto2do;
+
+  //Si el dígito de control es igual a 10, éste tomará el valor 1.
+  if ($dc2do == 10) {
+    $dc2do = 1;
+  }
 
   return $dc1er . $dc2do;
 }
